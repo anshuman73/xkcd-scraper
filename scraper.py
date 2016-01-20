@@ -13,9 +13,9 @@ def main():
 	print 'Querying complete\n\nTotal of ' + str(total) + ' images found\n\n'
 	base_url = 'http://xkcd.com/%s/info.0.json'
 	wd = os.getcwd()
-	print 'Checking if /images directory exists...'
+	print 'Checking if /images directory exists...\n'
 	if not os.path.exists(wd + '/images'):
-		print 'Making directory /images'
+		print 'Making directory /images\n'
 		os.makedirs(wd + '/images')
 	for num in xrange(1, total + 1):
 		if num == 404:
@@ -24,9 +24,12 @@ def main():
 
 		url = base_url % (num)
 		img_metadata = json.loads(urllib.urlopen(url).read())
-		print 'Downloading image ' + str(num) + ' - ' + img_metadata['title']
-		urllib.urlretrieve(img_metadata['img'], wd + '/images/' + str(num) + ' - ' + img_metadata['title'])
+		if not os.path.exists(wd + '/images/' + str(num) + ' - ' + img_metadata['title']):
+			print 'Downloading image ' + str(num) + ' - "' + img_metadata['title'] + '"'
+			urllib.urlretrieve(img_metadata['img'], wd + '/images/' + str(num) + ' - ' + img_metadata['title'])
+		else:
+			print 'Image' + str(num) + ' - "' + img_metadata['title'] + '" already exists. Skipping...'
 
 
-if raw_input('\nPress Enter to start: \n') == '':
+if raw_input('\nPress Enter to start:') == '':
 	main()
