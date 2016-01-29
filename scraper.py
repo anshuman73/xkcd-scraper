@@ -24,11 +24,11 @@ def main():
 
 		url = base_url % (num)
 		img_metadata = json.loads(urllib.urlopen(url).read())
-		if not os.path.exists(wd + '/images/' + str(num) + ' - ' + img_metadata['title']):
-			print 'Downloading image ' + str(num) + ' - "' + img_metadata['title'] + '"'
-			urllib.urlretrieve(img_metadata['img'], wd + '/images/' + str(num) + ' - ' + img_metadata['title'])
+		if not os.path.exists(wd + '/images/' + str(num) + ' - ' + img_metadata['safe_title']):
+			print 'Downloading image ' + str(num) + ' - "' + img_metadata['safe_title'] + '"'
+			urllib.urlretrieve(img_metadata['img'], wd + '/images/' + str(num) + ' - ' + img_metadata['safe_title'])
 		else:
-			print 'Image' + str(num) + ' - "' + img_metadata['title'] + '" already exists. Skipping...'
+			print 'Image' + str(num) + ' - "' + img_metadata['safe_title'] + '" already exists. Skipping...'
 
 
 if raw_input('\nPress Enter to start:') == '':
