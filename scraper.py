@@ -17,7 +17,7 @@ def main():
 	if not os.path.exists(wd + '/images'):
 		print 'Making directory /images\n'
 		os.makedirs(wd + '/images')
-	for num in xrange(1, total + 1):
+	for num in xrange(total, 0, -1):
 		if num == 404:
 			print '\n\nImage 404 is a pathetic little joke -__- Ignoring...\n\n'
 			continue
@@ -28,7 +28,7 @@ def main():
 			print 'Downloading image ' + str(num) + ' - "' + img_metadata['safe_title'] + '"'
 			urllib.urlretrieve(img_metadata['img'], wd + '/images/' + str(num) + ' - ' + img_metadata['safe_title'])
 		else:
-			print 'Image' + str(num) + ' - "' + img_metadata['safe_title'] + '" already exists. Skipping...'
+			print 'Image ' + str(num) + ' - "' + img_metadata['safe_title'] + '" already exists. Skipping...'
 
 
 if raw_input('\nPress Enter to start:') == '':
