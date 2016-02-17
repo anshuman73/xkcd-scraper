@@ -21,6 +21,9 @@ def main():
 		if num == 404:
 			print '\n\nImage 404 is a pathetic little joke -__- Ignoring...\n\n'
 			continue
+		if num == 1608:
+			print '\nComic 1608 is actually an interactive game.\nVisit http://xkcd.com/1608 to play !\n'
+			continue
 
 		url = base_url % (num)
 		img_metadata = json.loads(urllib.urlopen(url).read())
